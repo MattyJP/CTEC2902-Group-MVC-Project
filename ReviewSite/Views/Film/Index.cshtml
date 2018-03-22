@@ -1,17 +1,18 @@
-﻿
+﻿@model List<ReviewSite_Views.Models.Film>
+
+<h2>Index</h2>
+
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
+<ul>
+    @foreach (var film in @Model)
+    {
+        <li><a href="~/Film/Details/@film.FilmId">@film.Name</a></li>
+    }
+</ul>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+
+
+
