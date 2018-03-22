@@ -9,16 +9,10 @@
 <ul>
     @foreach (var film in @Model)
     {
-        <li>
-            <a href="~/Film/Details/@film.FilmId">@film.Name</a>
-        </li>
-        <li>
-            <a href="~/Film/Edit/@film.FilmId">@film.Name - Edit</a>
-        </li>
+        <li><a href="~/Film/Details/@film.FilmId">@film.Name</a></li>
     }
-    <li>
-        <a href="~/Film/Create">Create Entry</a>
-    </li>
 </ul>
+
+
 
 
