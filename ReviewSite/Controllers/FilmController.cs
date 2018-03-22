@@ -12,16 +12,16 @@ namespace ReviewSite.Controllers
         private List<Film> _films = new List<Film>() {
         new Film { FilmId = 1,
                     Name = "Test 1",
-                    Description = "",
-                    Genre = "" },
+                    Description = "Test123",
+                    Genre = "Horror" },
         new Film { FilmId = 2,
                     Name = "Test 2",
-                    Description = "",
-                    Genre = "" },
+                    Description = "Test456",
+                    Genre = "SCIFI" },
         new Film { FilmId = 3,
                     Name = "Test 3",
-                    Description = "",
-                    Genre = "" },
+                    Description = "Test789",
+                    Genre = "Western" },
         };
 
         // GET: Film
@@ -34,13 +34,25 @@ namespace ReviewSite.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null) return new HttpNotFoundResult();
-
             Film selectedFilm = _films.First(p => p.FilmId == id);
-
             if (selectedFilm == null) return new HttpNotFoundResult();
-
             return View(selectedFilm);
         }
 
+        // GET: Edit/id 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null) return new HttpNotFoundResult();
+            Film selectedFilm = _films.First(p => p.FilmId == id);
+            if (selectedFilm == null) return new HttpNotFoundResult();
+            return View(selectedFilm);
+        }
+
+
+        public ActionResult Create(int? id)
+        {
+            
+            return View(_films);
+        }
     }
 }
