@@ -10,19 +10,20 @@ namespace ReviewSite.Controllers
     {
         public ActionResult Index()
         {
+            ViewData["Welcome!"] = "Welcome to this shit show";
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
 
             return View();
         }

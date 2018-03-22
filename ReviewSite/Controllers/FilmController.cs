@@ -3,44 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ReviewSite_Views.Models;
+
 
 namespace ReviewSite.Controllers
 {
-    public class FilmController : Controller
-    {
-        private List<Film> _films = new List<Film>() {
-        new Film { FilmId = 1,
-                    Name = "Test 1",
-                    Description = "",
-                    Genre = "" },
-        new Film { FilmId = 2,
-                    Name = "Test 2",
-                    Description = "",
-                    Genre = "" },
-        new Film { FilmId = 3,
-                    Name = "Test 3",
-                    Description = "",
-                    Genre = "" },
-        };
 
-        // GET: Film
+    public class FilmController : Controller
+    { 
         public ActionResult Index()
         {
-            return View(_films);
+            return View();
         }
 
-        // GET: Details/id
-        public ActionResult Details(int? id)
+        public ActionResult Details(string name, string description, string genre)
         {
-            if (id == null) return new HttpNotFoundResult();
+            var viewModel = new FilmViewModel
+            {
+                Name = "Test" + name,
+                Description = "Test D",
+                Genre = "Horror"
+              
+            };
 
-            Film selectedFilm = _films.First(p => p.FilmId == id);
-
-            if (selectedFilm == null) return new HttpNotFoundResult();
-
-            return View(selectedFilm);
+            return View(viewModel);
         }
 
+        public class FilmViewModel
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public string Genre { get; set; }
+            public DateTime ReleaseDate { get; set; }
+            public int Rating { get; set; }
+
+        }
     }
-}
+      
