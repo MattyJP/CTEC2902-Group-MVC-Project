@@ -62,6 +62,8 @@ namespace ReviewSite.Controllers
         {
             //Creates the default Admin account using the setting in the Web.Config file if there is no account present
             CreateDefaultAdmin();
+            //Creates the default Standard User account using the setting in the Web.Config file if there is no account present
+            CreateDefaultStandardUser();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -158,6 +160,8 @@ namespace ReviewSite.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //Add the user to the Standard User role by default
+                UserManager.AddToRole(user.Id, "Standard User");
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -509,9 +513,10 @@ private const string XsrfKey = "XsrfId";
 {
     // Get the administrator Account
     string AdminUserName = ConfigurationManager.AppSettings["AdminUserName"];
+    string AdminEmail = ConfigurationManager.AppSettings["AdminEmail"];
     string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
     // See if Admin exists
-    var objAdminUser = UserManager.FindByEmail(AdminUserName);
+    var objAdminUser = UserManager.FindByEmail(AdminEmail);
     if (objAdminUser == null)
     {
         //See if the Admin role exists
@@ -522,13 +527,42 @@ private const string XsrfKey = "XsrfId";
             RoleManager.Create(objAdminRole);
         }
         // Create Admin user
-        var objNewAdminUser = new ApplicationUser { UserName = AdminUserName, Email = AdminUserName };
+        var objNewAdminUser = new ApplicationUser { UserName = AdminUserName, Email = AdminEmail };
         var AdminUserCreateResult = UserManager.Create(objNewAdminUser, AdminPassword);
         // Put user in Admin role
         UserManager.AddToRole(objNewAdminUser.Id, "Administrator");
     }
 }
 
-#endregion
+        #endregion
+
+        //Adds the CreateDefaultStandardUser model to the controller
+        #region private void CreateDefaultStandardUser()
+        private void CreateDefaultStandardUser()
+        {
+            // Get the standard user Account
+            string UserName = ConfigurationManager.AppSettings["UserName"];
+            string Email = ConfigurationManager.AppSettings["Email"];
+            string Password = ConfigurationManager.AppSettings["Password"];
+            // See if Standard User exists
+            var objStandardUser = UserManager.FindByEmail(Email);
+            if (objStandardUser == null)
+            {
+                //See if the Admin role exists
+                if (!RoleManager.RoleExists("Standard User"))
+                {
+                    // Create the Standard User Role (if needed)
+                    IdentityRole objStandardUserRole = new IdentityRole("Standard user");
+                    RoleManager.Create(objStandardUserRole);
+                }
+                // Create Standard user
+                var objNewStandardUser = new ApplicationUser { UserName = UserName, Email = Email };
+                var StandardUserCreateResult = UserManager.Create(objNewStandardUser, Password);
+                // Put user in Standard User role
+                UserManager.AddToRole(objNewStandardUser.Id, "Standard User");
+            }
+        }
+
+        #endregion
     }
 }
