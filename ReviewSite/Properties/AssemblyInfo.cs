@@ -8,11 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ReviewSite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("
-            ")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ReviewSite")]
-[assembly: AssemblyCopyright("Copyright © 
-             2018")]
+[assembly: AssemblyCopyright("Copyright ©2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
