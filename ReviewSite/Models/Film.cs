@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ReviewSite_Views.Models
+namespace ReviewSite.Models
 {
     public class Film
     {
-        public int FilmId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Genre { get; set; }
+        public virtual int FilmId { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Description { get; set; }
+        public virtual string Genre { get; set; }
     }
 }
