@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ReviewSite.Models;
-using ReviewSite.Models;
 
 namespace ReviewSite.Controllers
 {
