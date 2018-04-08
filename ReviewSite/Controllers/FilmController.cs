@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ReviewSite_Views.Models;
+using System.Diagnostics;
 
 namespace ReviewSite.Controllers
 {
@@ -41,6 +42,32 @@ namespace ReviewSite.Controllers
 
             return View(selectedFilm);
         }
+        
+        // GET: Edit/id 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null) return new HttpNotFoundResult();
+            Film selectedFilm = _films.First(p => p.FilmId == id);
+            if (selectedFilm == null) return new HttpNotFoundResult();
+            return View(selectedFilm);
+        }
 
+        // POST: Edit
+        [HttpPost]
+        public ActionResult Edit(Film film)
+        {
+            if (ModelState.IsValid)
+            {
+                Debug.WriteLine(film.Name);
+                Debug.WriteLine(film.Description);
+                Debug.WriteLine(film.Genre);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(film);
+            }
+        }
     }
 }
