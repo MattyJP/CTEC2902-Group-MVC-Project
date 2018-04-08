@@ -177,12 +177,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DirectorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Director.cs" />
+    <Compile Include="Models\DirectorContext.cs" />
+    <Compile Include="Models\DirectorDataInitialiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\UserRoleViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -247,6 +251,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Directors\Create.cshtml" />
+    <Content Include="Views\Directors\Delete.cshtml" />
+    <Content Include="Views\Directors\Details.cshtml" />
+    <Content Include="Views\Directors\Edit.cshtml" />
+    <Content Include="Views\Directors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
