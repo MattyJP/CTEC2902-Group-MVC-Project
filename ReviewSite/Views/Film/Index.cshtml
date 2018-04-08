@@ -3,13 +3,14 @@
 <h2>Index</h2>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Film Library";
 }
 
 <ul>
     @foreach (var film in @Model)
     {
         <li><a href="~/Film/Details/@film.FilmId">@film.Name</a></li>
+        <li><a href="~/Film/Edit/@film.FilmId">@film.Name - Edit</a></li>
     }
 </ul>
 

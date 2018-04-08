@@ -69,5 +69,20 @@ namespace ReviewSite.Controllers
                 return View(film);
             }
         }
+/*
+        // POST: Add
+        [HttpPost]
+        public ActionResult Add(Film film)
+
+        {
+            if(ModelState.isValid)
+            {
+                Debug.WriteLine(film.Name);
+                Debug.WriteLine(film.Description);
+                Debug.WriteLine(film.Genre);
+               Add _films
+                return RedirectToAction("Index")
+            }
+        }*/
     }
 }
