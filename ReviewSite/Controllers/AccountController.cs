@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ReviewSite.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 
 namespace ReviewSite.Controllers
 {
@@ -18,11 +20,12 @@ namespace ReviewSite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        //Default constructor
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +37,9 @@ namespace ReviewSite.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -57,6 +60,10 @@ namespace ReviewSite.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            //Creates the default Admin account using the setting in the Web.Config file if there is no account present
+            CreateDefaultAdmin();
+            //Creates the default Standard User account using the setting in the Web.Config file if there is no account present
+            CreateDefaultStandardUser();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -75,7 +82,7 @@ namespace ReviewSite.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -120,7 +127,7 @@ namespace ReviewSite.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,12 +158,14 @@ namespace ReviewSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //Add the user to the Standard User role by default
+                UserManager.AddToRole(user.Id, "Standard User");
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -423,9 +432,9 @@ namespace ReviewSite.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+#region Helpers
+// Used for XSRF protection when adding external logins
+private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -480,6 +489,80 @@ namespace ReviewSite.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+        #endregion
+
+        //Adds the RoleManager model to the controller
+        #region public ApplicationRoleManager RoleManager
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+        get
+            {
+             return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+       private set
+            {
+            _roleManager = value;
+            }
+        }
+        #endregion
+
+        //Adds the CreateDefaultAdmin model to the controller
+        #region private void CreateDefaultAdmin()
+        private void CreateDefaultAdmin()
+{
+    // Get the administrator Account
+    string AdminUserName = ConfigurationManager.AppSettings["AdminUserName"];
+    string AdminEmail = ConfigurationManager.AppSettings["AdminEmail"];
+    string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+    // See if Admin exists
+    var objAdminUser = UserManager.FindByEmail(AdminEmail);
+    if (objAdminUser == null)
+    {
+        //See if the Admin role exists
+        if (!RoleManager.RoleExists("Administrator"))
+        {
+            // Create the Admin Role (if needed)
+            IdentityRole objAdminRole = new IdentityRole("Administrator");
+            RoleManager.Create(objAdminRole);
+        }
+        // Create Admin user
+        var objNewAdminUser = new ApplicationUser { UserName = AdminUserName, Email = AdminEmail };
+        var AdminUserCreateResult = UserManager.Create(objNewAdminUser, AdminPassword);
+        // Put user in Admin role
+        UserManager.AddToRole(objNewAdminUser.Id, "Administrator");
+    }
+}
+
+        #endregion
+
+        //Adds the CreateDefaultStandardUser model to the controller
+        #region private void CreateDefaultStandardUser()
+        private void CreateDefaultStandardUser()
+        {
+            // Get the standard user Account
+            string UserName = ConfigurationManager.AppSettings["UserName"];
+            string Email = ConfigurationManager.AppSettings["Email"];
+            string Password = ConfigurationManager.AppSettings["Password"];
+            // See if Standard User exists
+            var objStandardUser = UserManager.FindByEmail(Email);
+            if (objStandardUser == null)
+            {
+                //See if the Admin role exists
+                if (!RoleManager.RoleExists("Standard User"))
+                {
+                    // Create the Standard User Role (if needed)
+                    IdentityRole objStandardUserRole = new IdentityRole("Standard user");
+                    RoleManager.Create(objStandardUserRole);
+                }
+                // Create Standard user
+                var objNewStandardUser = new ApplicationUser { UserName = UserName, Email = Email };
+                var StandardUserCreateResult = UserManager.Create(objNewStandardUser, Password);
+                // Put user in Standard User role
+                UserManager.AddToRole(objNewStandardUser.Id, "Standard User");
+            }
+        }
+
         #endregion
     }
 }

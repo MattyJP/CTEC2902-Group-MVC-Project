@@ -9,6 +9,8 @@ namespace ReviewSite
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            //Add the Role Manager
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
         }
     }
 }
