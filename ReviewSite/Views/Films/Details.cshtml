@@ -43,7 +43,11 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FilmId }) |
+        <!-- Displays the edit details link if the user is an administrator -->
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.FilmId })
+        }
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
