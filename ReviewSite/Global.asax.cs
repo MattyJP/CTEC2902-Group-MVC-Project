@@ -16,7 +16,11 @@ namespace ReviewSite
     {
         protected void Application_Start()
         {
+
+            Database.SetInitializer(new DirectorDataInitialiser());
+
             Database.SetInitializer(new ActorDataInitialiser());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
