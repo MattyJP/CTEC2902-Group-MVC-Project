@@ -26,16 +26,16 @@ namespace ReviewSite.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void Genre()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.Genre() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Your Genre Search Page", result.ViewBag.Message);
         }
 
         [TestMethod]

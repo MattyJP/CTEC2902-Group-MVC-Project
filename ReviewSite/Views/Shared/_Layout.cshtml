@@ -28,7 +28,11 @@
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
+
+                        <li>@Html.ActionLink("Add Film", "Create", "Films")</li>
+
                         <li>@Html.ActionLink("Add Actor", "Create", "Actors")</li>
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
