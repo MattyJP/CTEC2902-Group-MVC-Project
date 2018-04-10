@@ -12,9 +12,14 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+   @using (Html.BeginForm())
+   {
+       <br />
+       <p>
+           Search By Film: @Html.TextBox("SearchString")
+           <input type="submit" value="Search" />
+       </p>
+   }
     <table class="table">
         <tr>
             <th>
@@ -52,5 +57,8 @@
     }
     
     </table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 </body>
 </html>

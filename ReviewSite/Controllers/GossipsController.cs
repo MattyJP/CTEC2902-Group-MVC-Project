@@ -15,9 +15,15 @@ namespace ReviewSite.Controllers
         private GossipContext db = new GossipContext();
 
         // GET: Gossips
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Gossips.ToList());
+            var gossip = from g in db.Gossips
+                         select g;
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                gossip = gossip.Where(s => s.FilmName.Contains(searchString));
+            }
+            return View(gossip.ToList());
         }
 
         // GET: Gossips/Details/5
