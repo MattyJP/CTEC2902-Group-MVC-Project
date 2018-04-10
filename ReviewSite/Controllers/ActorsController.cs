@@ -15,9 +15,16 @@ namespace ReviewSite.Controllers
         private ActorContext db = new ActorContext();
 
         // GET: Actors
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Actors.ToList());
+            //Allows search functionality for actors
+            var actors = from a in db.Actors
+                         select a;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                actors = actors.Where(s => s.Name.Contains(searchString));
+            }
+            return View(actors.ToList());
         }
 
         // GET: Actors/Details/5

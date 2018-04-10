@@ -15,9 +15,16 @@ namespace ReviewSite.Controllers
         private DirectorContext db = new DirectorContext();
 
         // GET: Directors
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Directors.ToList());
+            //Allows search functionality for directors
+            var directors = from d in db.Directors
+                         select d;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                directors = directors.Where(s => s.Name.Contains(searchString));
+            }
+            return View(directors.ToList());
         }
 
         // GET: Directors/Details/5
