@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DirectorsController.cs" />
+    <Compile Include="Controllers\GossipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +196,8 @@
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\ActorContext.cs" />
     <Compile Include="Models\ActorDataInitialiser.cs" />
+    <Compile Include="Models\Gossip.cs" />
+    <Compile Include="Models\GossipContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\UserRoleViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -278,6 +281,11 @@
     <Content Include="Views\Films\Details.cshtml" />
     <Content Include="Views\Films\Edit.cshtml" />
     <Content Include="Views\Films\Index.cshtml" />
+    <Content Include="Views\Gossips\Create.cshtml" />
+    <Content Include="Views\Gossips\Delete.cshtml" />
+    <Content Include="Views\Gossips\Details.cshtml" />
+    <Content Include="Views\Gossips\Edit.cshtml" />
+    <Content Include="Views\Gossips\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

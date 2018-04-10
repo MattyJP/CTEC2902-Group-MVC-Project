@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ReviewSite.Models.Gossip>
+
+@{
+    ViewBag.Title = "Gossip";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+   @using (Html.BeginForm())
+   {
+       <br />
+       <p>
+           Search By Film: @Html.TextBox("SearchString")
+           <input type="submit" value="Search" />
+       </p>
+   }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GossipText)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GossipText)
+            </td>
+            <td>
+                <!-- Displays the edit details link if the user is an administrator -->
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GossipId })
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.GossipId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</body>
+</html>
