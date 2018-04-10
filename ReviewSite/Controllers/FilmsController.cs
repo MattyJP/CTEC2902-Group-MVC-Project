@@ -15,9 +15,15 @@ namespace ReviewSite.Controllers
         private FilmContext db = new FilmContext();
 
         // GET: Films
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Films.ToList());
+            var films = from f in db.Films
+                        select f;
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                films = films.Where(s => s.Name.Contains(searchString));
+            }
+            return View(films.ToList());
         }
 
         // GET: Films/Details/5
