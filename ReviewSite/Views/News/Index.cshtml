@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ReviewSite.Models.News>
+
+@{
+    ViewBag.Title = "News Stories";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfPublish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RevatedFilm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headline)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPublish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RevatedFilm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headline)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.NewsId }) |
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NewsId } )
+                } |
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NewsId })
+                }
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

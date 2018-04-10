@@ -19,5 +19,6 @@ namespace ReviewSite.Models
         [Required]
         [Display(Name = "Actor Summmary")]
         public virtual string ActorSummary { get; set; }
+
     }
 }
