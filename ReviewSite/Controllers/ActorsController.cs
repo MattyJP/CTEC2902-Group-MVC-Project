@@ -15,10 +15,16 @@ namespace ReviewSite.Controllers
         private ActorContext db = new ActorContext();
 
         // GET: Actors
-        public async Task<IActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             //Allows search functionality for actors
-            return View(db.Actors.ToList());
+            var actors = from a in db.Actors
+                         select a;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                actors = actors.Where(s => s.Name.Contains(searchString));
+            }
+            return View(actors.ToList());
         }
 
         // GET: Actors/Details/5
