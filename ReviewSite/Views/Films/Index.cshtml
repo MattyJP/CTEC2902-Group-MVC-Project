@@ -12,7 +12,19 @@
     <title>Index</title>
 </head>
 <body>
-    <table class="table">
+    <br/>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search By Film Title: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+        <p>
+            <!--Add code for this button to work-->
+            <input type="submit"value="Show all"/>
+        </p>
+    }
+            <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -22,6 +34,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th></th>
         </tr>
@@ -38,6 +53,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Genre)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+              
                 <td>
                     <!-- Displays the edit details link if the user is an administrator -->
                     @if (User.IsInRole("Administrator"))
