@@ -15,8 +15,9 @@ namespace ReviewSite.Controllers
         private ActorContext db = new ActorContext();
 
         // GET: Actors
-        public ActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            //Allows search functionality for actors
             return View(db.Actors.ToList());
         }
 
