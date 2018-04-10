@@ -177,7 +177,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\FilmsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\FilmsController.cs" />
     <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DirectorsController.cs" />
