@@ -6,9 +6,9 @@ using System.Data.Entity;
 
 namespace ReviewSite.Models
 {
-    public class FilmDataInitialiser : DropCreateDatabaseAlways<FilmContext>
+    public class FilmDataInitialiser : DropCreateDatabaseAlways<FilmContextNew>
     {
-        protected override void Seed(FilmContext context)
+        protected override void Seed(FilmContextNew context)
         {
             Film film1 = new Film();
             film1.FilmId = 1;

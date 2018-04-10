@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ReviewSite.Models;
 
@@ -12,12 +8,18 @@ namespace ReviewSite.Controllers
 {
     public class FilmsController : Controller
     {
-        private FilmContext db = new FilmContext();
+        private FilmContextNew db = new FilmContextNew();
 
         // GET: Films
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Films.ToList());
+            var films = from f in db.Films
+                     select f;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                films = films.Where(s => s.Name.Contains(searchString));
+            }
+            return View(films.ToList());
         }
 
         // GET: Films/Details/5
@@ -46,7 +48,7 @@ namespace ReviewSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FilmId,Name,Description,Genre")] Film film)
+        public ActionResult Create([Bind(Include = "FilmId,Name,Description,Genre,Rating")] Film film)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +80,7 @@ namespace ReviewSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FilmId,Name,Description,Genre")] Film film)
+        public ActionResult Edit([Bind(Include = "FilmId,Name,Description,Genre,Rating")] Film film)
         {
             if (ModelState.IsValid)
             {
