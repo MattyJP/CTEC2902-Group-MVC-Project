@@ -14,16 +14,16 @@ namespace ReviewSite.Controllers
     {
         private NewsContext db = new NewsContext();
 
-       /* public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString)
         {
-            var News = from g in db.News
-                         select g;
+            var news = from n in db.News
+                         select n;
             if (!string.IsNullOrEmpty(searchString))
             {
-                News = News.Where(s => s.RevatedFilm.Contains(searchString));
+                news = news.Where(s => s.RevatedFilm.Contains(searchString));
             }
-            return View(News.ToList());
-        }*/
+            return View(news.ToList());
+        }
         // GET: News
         public ActionResult Index()
         {
