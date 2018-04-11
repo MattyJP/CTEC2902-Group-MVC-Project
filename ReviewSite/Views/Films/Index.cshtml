@@ -12,6 +12,14 @@
     <title>Index</title>
 </head>
 <body>
+    <br/>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search By Film Title: @Html.TextBox("SearchString")
+            <input type="submit" value="search"/>
+        </p>
+    }
     <table class="table">
         <tr>
             <th>
