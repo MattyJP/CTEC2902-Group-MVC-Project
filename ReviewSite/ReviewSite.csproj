@@ -232,6 +232,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Documentation\MVC - Admin - Sequence Diagram%28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Class Diagram %28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Standard User - Sequence Diagram %28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Use Case Diagram%28Oliver Holt%29.eap" />
     <Content Include="Documentation\ERD.qsee" />
     <Content Include="Documentation\Use case descriptons.doc" />
     <Content Include="Documentation\Screen Designs.pptx" />
