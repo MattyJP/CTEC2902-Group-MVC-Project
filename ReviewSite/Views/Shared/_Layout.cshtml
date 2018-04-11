@@ -22,7 +22,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
                     <!-- Displays the Administrator controls link in the nav bar if the user is an administrator -->
                     @if (User.IsInRole("Administrator"))
                     {
