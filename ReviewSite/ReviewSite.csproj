@@ -202,10 +202,32 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ActorContext-20180408172040.mdf" />
+    <Content Include="App_Data\ActorContext-20180408172040_log.ldf">
+      <DependentUpon>ActorContext-20180408172040.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\aspnet-ReviewSite-20180301013049.mdf" />
     <Content Include="App_Data\aspnet-ReviewSite-20180301013049_log.ldf">
       <DependentUpon>aspnet-ReviewSite-20180301013049.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\DirectorContext-20180408183702.mdf" />
+    <Content Include="App_Data\DirectorContext-20180408183702_log.ldf">
+      <DependentUpon>DirectorContext-20180408183702.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\FilmContext-20180408160549.mdf" />
+    <Content Include="App_Data\FilmContext-20180408160549_log.ldf">
+      <DependentUpon>FilmContext-20180408160549.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\FilmContext-20180408161835.mdf" />
+    <Content Include="App_Data\FilmContext-20180408161835_log.ldf">
+      <DependentUpon>FilmContext-20180408161835.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\FilmDB.mdf" />
+    <Content Include="App_Data\FilmDB_log.ldf" />
+    <Content Include="App_Data\GossipContext-20180409000632.mdf" />
+    <Content Include="App_Data\GossipContext-20180409000632_log.ldf" />
+    <Content Include="App_Data\GossipContext-20180410105627.mdf" />
+    <Content Include="App_Data\GossipContext-20180410105627_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
