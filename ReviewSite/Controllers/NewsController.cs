@@ -13,9 +13,10 @@ namespace ReviewSite.Controllers
     public class NewsController : Controller
     {
         private NewsContext db = new NewsContext();
-
+        // GET: News
         public ActionResult Index(string searchString)
         {
+            //allows search functionality for news
             var news = from n in db.News
                          select n;
             if (!string.IsNullOrEmpty(searchString))
@@ -23,11 +24,6 @@ namespace ReviewSite.Controllers
                 news = news.Where(s => s.RevatedFilm.Contains(searchString));
             }
             return View(news.ToList());
-        }
-        // GET: News
-        public ActionResult Index()
-        {
-            return View(db.News.ToList());
         }
 
         // GET: News/Details/5

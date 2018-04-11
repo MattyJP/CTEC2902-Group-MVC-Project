@@ -12,14 +12,16 @@
     <title>Index</title>
 </head>
 <body>
+    <br/>
     @using (Html.BeginForm())
     {
         <p>
-            Search By Revated Film: @Html.TextBox("SearchString")
+            Search By  Film: @Html.TextBox("SearchString")
             <input type="submit" value="Search" />
         </p>
     }
-    <p><a href="~/News/">Show All &raquo;</a></p>
+    
+    <!--<p><a href="~/News/">Show All &raquo;</a></p>-->
     <table class="table">
         <tr>
             <th>
@@ -58,9 +60,6 @@
             </td>
         </tr>
     }
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
     
     </table>
 </body>

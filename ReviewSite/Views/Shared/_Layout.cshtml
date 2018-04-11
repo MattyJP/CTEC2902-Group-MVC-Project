@@ -22,8 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
                     <!-- Displays the Administrator controls link in the nav bar if the user is an administrator -->
                     @if (User.IsInRole("Administrator"))
                     {
@@ -34,6 +33,8 @@
                         <li>@Html.ActionLink("Add Actor", "Create", "Actors")</li>
 
                         <li>@Html.ActionLink("Add Film", "Create", "Films")</li>
+
+                        <li>@Html.ActionLink("Add News Story", "Create", "News")</li>
 
                     }
                 </ul>
