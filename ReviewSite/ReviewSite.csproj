@@ -232,6 +232,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Documentation\MVC - Admin - Sequence Diagram%28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Class Diagram %28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Standard User - Sequence Diagram %28Oliver Holt%29.eap" />
+    <Content Include="Documentation\MVC - Use Case Diagram%28Oliver Holt%29.eap" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
