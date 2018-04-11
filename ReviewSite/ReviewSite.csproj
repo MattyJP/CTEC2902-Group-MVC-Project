@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DirectorsController.cs" />
+    <Compile Include="Controllers\GossipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +196,8 @@
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\ActorContext.cs" />
     <Compile Include="Models\ActorDataInitialiser.cs" />
+    <Compile Include="Models\Gossip.cs" />
+    <Compile Include="Models\GossipContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\UserRoleViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -203,25 +206,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ActorContext-20180408172040.mdf" />
-    <Content Include="App_Data\ActorContext-20180408172040_log.ldf">
-      <DependentUpon>ActorContext-20180408172040.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\ActorContext-20180408172040_log.ldf" />
     <Content Include="App_Data\aspnet-ReviewSite-20180301013049.mdf" />
     <Content Include="App_Data\aspnet-ReviewSite-20180301013049_log.ldf">
       <DependentUpon>aspnet-ReviewSite-20180301013049.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\DirectorContext-20180408183702.mdf" />
-    <Content Include="App_Data\DirectorContext-20180408183702_log.ldf">
-      <DependentUpon>DirectorContext-20180408183702.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\DirectorContext-20180408183702_log.ldf" />
     <Content Include="App_Data\FilmContext-20180408160549.mdf" />
-    <Content Include="App_Data\FilmContext-20180408160549_log.ldf">
-      <DependentUpon>FilmContext-20180408160549.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\FilmContext-20180408160549_log.ldf" />
     <Content Include="App_Data\FilmContext-20180408161835.mdf" />
-    <Content Include="App_Data\FilmContext-20180408161835_log.ldf">
-      <DependentUpon>FilmContext-20180408161835.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\FilmContext-20180408161835_log.ldf" />
     <Content Include="App_Data\FilmDB.mdf" />
     <Content Include="App_Data\FilmDB_log.ldf" />
     <Content Include="App_Data\GossipContext-20180409000632.mdf" />
@@ -300,6 +295,11 @@
     <Content Include="Views\Films\Details.cshtml" />
     <Content Include="Views\Films\Edit.cshtml" />
     <Content Include="Views\Films\Index.cshtml" />
+    <Content Include="Views\Gossips\Create.cshtml" />
+    <Content Include="Views\Gossips\Delete.cshtml" />
+    <Content Include="Views\Gossips\Details.cshtml" />
+    <Content Include="Views\Gossips\Edit.cshtml" />
+    <Content Include="Views\Gossips\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
