@@ -37,6 +37,16 @@
 
                         <li>@Html.ActionLink("Add Gossip", "Create", "Films")</li>
                     }
+                    @if (User.IsInRole("Standard user"))
+                    {
+                        <li>@Html.ActionLink("Directors", "Index", "Directors")</li>
+
+                        <li>@Html.ActionLink("Actors", "Index", "Actors")</li>
+
+                        <li>@Html.ActionLink("Films", "Index", "Films")</li>
+
+                        <li>@Html.ActionLink("Gossip", "Index", "Gossips")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
